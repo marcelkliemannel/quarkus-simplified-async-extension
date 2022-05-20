@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.turingcomplete</groupId>
-  <artifactId>quarkus-simplified-async-parent</artifactId>
+  <artifactId>quarkus-simplified-async-extension-parent</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
   <name>Quarkus Simplified Async Extension - Parent</name>
@@ -64,9 +64,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git@github.com:marcelkliemannel/quarkus-simplified-async-extension.git</connection>
-    <developerConnection>scm:git:git@github.com:marcelkliemannel/quarkus-simplified-async-extension.git</developerConnection>
-    <url>https://github.com/marcelkliemannel/quarkus-simplified-async-extension</url>
+    <connection>scm:git:git@github.com:marcelkliemannel/quarkus-simplified-async-extension-extension.git</connection>
+    <developerConnection>scm:git:git@github.com:marcelkliemannel/quarkus-simplified-async-extension-extension.git</developerConnection>
+    <url>https://github.com/marcelkliemannel/quarkus-simplified-async-extension-extension</url>
   </scm>
   <build>
     <pluginManagement>

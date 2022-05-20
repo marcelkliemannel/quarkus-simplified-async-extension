@@ -45,13 +45,13 @@ The property `quarkus.vertx.worker-pool-size` can be used to control Vert.x work
 
 ### Dependency
 
-This extension, which uses Vert.x for the asynchronous execution, is available at [Maven Central](https://mvnrepository.com/artifact/dev.turingcomplete/quarkus-simplified-async-vertx).
+This extension, which uses Vert.x for the asynchronous execution, is available at [Maven Central](https://mvnrepository.com/artifact/dev.turingcomplete/quarkus-simplified-async-extension-vertx).
 
 #### Gradle
 
 ```kotlin
 dependencies {
-  implementation("dev.turingcomplete:quarkus-simplified-async-vertx:1.0.0")
+  implementation("dev.turingcomplete:quarkus-simplified-async-extension-vertx:1.0.0")
 }
 ```
 
@@ -60,7 +60,7 @@ dependencies {
 ```xml
 <dependency>
   <groupId>dev.turingcomplete</groupId>
-  <artifactId>quarkus-simplified-async-vertx</artifactId>
+  <artifactId>quarkus-simplified-async-extension-vertx</artifactId>
   <version>1.0.0</version>
 </dependency>
 ```

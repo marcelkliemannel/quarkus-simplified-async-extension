@@ -3,10 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>dev.turingcomplete</groupId>
-    <artifactId>quarkus-simplified-async-parent</artifactId>
+    <artifactId>quarkus-simplified-async-extension-parent</artifactId>
     <version>1.0.0</version>
   </parent>
-  <artifactId>quarkus-simplified-async-vertx</artifactId>
+  <artifactId>quarkus-simplified-async-extension-vertx</artifactId>
   <name>Quarkus Simplified Async Extension - Vert.x Runtime</name>
   <description>A Quarkus extension that enabled with @Async annotated methods to be executed asynchronously on a Vert.x worker thread.</description>
   <dependencies>
@@ -20,7 +20,7 @@
     </dependency>
     <dependency>
       <groupId>dev.turingcomplete</groupId>
-      <artifactId>quarkus-simplified-async-core</artifactId>
+      <artifactId>quarkus-simplified-async-extension-core</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
