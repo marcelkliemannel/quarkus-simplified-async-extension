@@ -64,9 +64,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git@github.com:marcelkliemannel/quarkus-simplified-async.git</connection>
-    <developerConnection>scm:git:git@github.com:marcelkliemannel/quarkus-simplified-async.git</developerConnection>
-    <url>https://github.com/marcelkliemannel/quarkus-simplified-async</url>
+    <connection>scm:git:git@github.com:marcelkliemannel/quarkus-simplified-async-extension.git</connection>
+    <developerConnection>scm:git:git@github.com:marcelkliemannel/quarkus-simplified-async-extension.git</developerConnection>
+    <url>https://github.com/marcelkliemannel/quarkus-simplified-async-extension</url>
   </scm>
   <build>
     <pluginManagement>
