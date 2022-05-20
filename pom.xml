@@ -71,6 +71,12 @@
     <url>https://github.com/marcelkliemannel/quarkus-simplified-async-extension-extension</url>
   </scm>
   <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>${maven-gpg-plugin.version}</version>
+      </plugin>
+    </plugins>
     <pluginManagement>
       <plugins>
         <plugin>
