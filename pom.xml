@@ -118,6 +118,9 @@
               <goals>
                 <goal>jar-no-fork</goal>
               </goals>
+              <configuration>
+                <attach>false</attach>
+              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -133,6 +136,7 @@
                 <goal>jar</goal>
               </goals>
               <configuration>
+                <attach>false</attach>
                 <failOnError>false</failOnError>
                 <doclint>none</doclint>
               </configuration>
