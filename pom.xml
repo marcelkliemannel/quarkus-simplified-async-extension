@@ -6,6 +6,8 @@
   <version>1.0.0</version>
   <packaging>pom</packaging>
   <name>Quarkus Simplified Async Extension - Parent</name>
+  <description>A Quarkus extension that enables with @Async annotated methods to be executed asynchronously.</description>
+  <url>https://github.com/marcelkliemannel/quarkus-simplified-async-extension</url>
   <modules>
     <module>core</module>
     <module>testkit</module>
@@ -118,9 +120,6 @@
               <goals>
                 <goal>jar-no-fork</goal>
               </goals>
-              <configuration>
-                <attach>false</attach>
-              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -136,7 +135,6 @@
                 <goal>jar</goal>
               </goals>
               <configuration>
-                <attach>false</attach>
                 <failOnError>false</failOnError>
                 <doclint>none</doclint>
               </configuration>

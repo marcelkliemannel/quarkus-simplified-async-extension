@@ -1,6 +1,6 @@
 # Quarkus Simplified Async Extension
 
-A Quarkus extension that enabled with `@Async` annotated methods to be executed asynchronously.
+A Quarkus extension that enables with `@Async` annotated methods to be executed asynchronously.
 
 The general mechanism is shown in the following code:
 

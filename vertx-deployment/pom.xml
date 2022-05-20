@@ -8,7 +8,7 @@
   </parent>
   <artifactId>quarkus-simplified-async-extension-vertx-deployment</artifactId>
   <name>Quarkus Simplified Async Extension - Vert.x Deployment</name>
-  <description>A Quarkus extension that enabled with @Async annotated methods to be executed asynchronously on a Vert.x worker thread. This artefact is the deployment module of the 'quarkus-simplified-async-extension-vertx' artefact.</description>
+  <description>A Quarkus extension that enables with @Async annotated methods to be executed asynchronously on a Vert.x worker thread. This artefact is the deployment module of the 'quarkus-simplified-async-extension-vertx' artefact.</description>
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
