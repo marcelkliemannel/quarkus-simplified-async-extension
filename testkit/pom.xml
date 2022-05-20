@@ -8,7 +8,7 @@
   </parent>
   <artifactId>quarkus-simplified-async-testkit</artifactId>
   <name>Quarkus Simplified Async Extension - Test Kit</name>
-  <description>By annotating a non-private method with @Async, the Simplified Async Quarkus extensions simplify the effort to execute asynchronous code. This artifact provides testing functionalities for asynchronous method interceptor implementations.</description>
+  <description>Testing utilities for the "Simplified Async" Quarkus extension.</description>
   <dependencies>
     <dependency>
       <groupId>dev.turingcomplete</groupId>

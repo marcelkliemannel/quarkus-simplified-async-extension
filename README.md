@@ -1,6 +1,6 @@
-# Quarkus Simplified Async Extensions
+# Quarkus Simplified Async Extension
 
-By annotating a non-private method with `@Async`, the _Simplified Async_ Quarkus extensions simplify the effort to asynchronous execution code. 
+A Quarkus extension that enabled with `@Async` annotated methods to be executed asynchronously.
 
 The general mechanism is shown in the following code:
 
@@ -29,7 +29,7 @@ Whose execution would lead to the following output:
 1002 Within async call
 ```
 
-Due to the modular design of Quarkus, there are many ways to execute code asynchronously. There is (or will be) an extension in this collection for many of these ways. Offering separate extensions for individual execution models is reducing third-party dependencies and utilize shared resources with other Quarkus components. 
+Due to the modular design of Quarkus, there are many ways to execute code asynchronously. There is (or will be) an individual extension in this repository for some of these ways. Offering separate extensions for individual execution models is reducing third-party dependencies and utilize shared resources with other Quarkus components. 
 
 Currently, there are extensions available for the following execution models:
 

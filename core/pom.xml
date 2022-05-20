@@ -8,7 +8,7 @@
   </parent>
   <artifactId>quarkus-simplified-async-core</artifactId>
   <name>Quarkus Simplified Async Extension - Core</name>
-  <description>By annotating a non-private method with @Async, the Simplified Async Quarkus extensions simplify the effort to execute asynchronous code. This artifact provides the basic components for the extensions, like the @Async annotation.</description>
+  <description>Basic components for the "Simplified Async" Quarkus extension, like the @Async annotation.</description>
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
