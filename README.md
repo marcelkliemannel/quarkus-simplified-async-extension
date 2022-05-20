@@ -7,15 +7,16 @@ The general mechanism is shown in the following code:
 ```java
 class MyClass {
   void run() {
-    System.out.println("Before async call");
-    runAsync();
-    System.out.println("After async call");
+    long start = System.currentTimeMillis();
+    System.out.println(System.currentTimeMillis() - start + ": Before async call");
+    runAsync(start);
+    System.out.println(System.currentTimeMillis() - start + ": After async call");
   }
   
   @Async
-  void runAsync() {
+  void runAsync(long start) {
     Thread.sleep(1000);
-    System.out.println("Within async call");
+    System.out.println(System.currentTimeMillis() - start + ": Within async call");
   }
 }
 ```
@@ -23,16 +24,16 @@ class MyClass {
 Whose execution would lead to the following output:
 
 ```
-Before async call
-After async call
-Within async call
+0 Before async call
+1 After async call
+1002 Within async call
 ```
 
 Due to the modular design of Quarkus, there are many ways to execute code asynchronously. There is (or will be) an extension in this collection for many of these ways. Offering separate extensions for individual execution models is reducing third-party dependencies and utilize shared resources with other Quarkus components. 
 
 Currently, there are extensions available for the following execution models:
 
-- [Vert.x wroker thread](#asynchronous-execution-via-vertx-extension)
+- [Vert.x worker thread](#asynchronous-execution-via-vertx-extension)
 
 ## Asynchronous Execution via Vert.x Extension
 
@@ -44,13 +45,13 @@ The property `quarkus.vertx.worker-pool-size` can be used to control Vert.x work
 
 ### Dependency
 
-This extension, which uses Vert.x for the asynchronous execution, is available at [Maven Central](TODO).
+This extension, which uses Vert.x for the asynchronous execution, is available at [Maven Central](https://mvnrepository.com/artifact/dev.turingcomplete/quarkus-simplified-async-vertx).
 
 #### Gradle
 
 ```kotlin
 dependencies {
-  implementation("dev.turingcomplete:simplified-async-vertx:1.0.0")
+  implementation("dev.turingcomplete:quarkus-simplified-async-vertx:1.0.0")
 }
 ```
 
@@ -59,7 +60,7 @@ dependencies {
 ```xml
 <dependency>
   <groupId>dev.turingcomplete</groupId>
-  <artifactId>simplified-async-vertx</artifactId>
+  <artifactId>quarkus-simplified-async-vertx</artifactId>
   <version>1.0.0</version>
 </dependency>
 ```
@@ -68,7 +69,7 @@ dependencies {
 
 This extension does not restrict the allowed return value of an `@Async` method. Note, however, that the return value of such a method call always returns `null`. Because the point of asynchronous execution is that we want to execute the code of the `@Async` method parallel to its calling method. Therefore, the method call will return immediately and does not wait for the result of the `@Async` method.
 
-An exception to this restriction is Vert.x's `io.vertx.core.Future`  type (not to be confused it with  Java's `java.util.concurrent.Future`). The intercepted method call will also return a `Future` object. This object will later get the results of the actual returned Future in the asynchronous method. With this functionality, we can add callbacks to the @`Asyc` method call, via which we get information about the execution of our asynchronous code. The following code example illustrates this principle with the `runAsync1()` method:
+An exception to this restriction is Vert.x's `io.vertx.core.Future` type (not to be confused it with  Java's `java.util.concurrent.Future`). The intercepted method call will also return a `Future` object. This object will later get the results of the actual returned Future in the asynchronous method. With this functionality, we can add callbacks to the @`Asyc` method call, via which we get information about the execution of our asynchronous code. The following code example illustrates this principle with the `runAsync1()` method:
 
 ```java
 class MyBean {
