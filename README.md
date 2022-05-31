@@ -51,7 +51,7 @@ This extension, which uses Vert.x for the asynchronous execution, is available a
 
 ```kotlin
 dependencies {
-  implementation("dev.turingcomplete:quarkus-simplified-async-extension-vertx:1.0.0")
+  implementation("dev.turingcomplete:quarkus-simplified-async-extension-vertx:1.1.0")
 }
 ```
 
@@ -61,7 +61,7 @@ dependencies {
 <dependency>
   <groupId>dev.turingcomplete</groupId>
   <artifactId>quarkus-simplified-async-extension-vertx</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
@@ -91,6 +91,25 @@ class MyBean {
 ```
 
 It's also possible to have `Future<Void>` as a return type and return `null` to use the callback functionalities, as seen for the `runAsync2()` in the code example above.
+
+### Custom Shared Worker Executor
+
+By using `@VertxAsync`, as an alternative to `@Async`, it's  possible to execute an asynchronous method on a custom shared worker executor:
+```java
+class MyBean {
+  void run() {
+    firstRunOnA();
+  }
+
+  @VertxAsync("Custom-Executor-A") 
+  void firstRunOnA() {
+    System.out.println(Thread.currentThread().getName());
+  }
+}
+```
+Vert.x will only create on executor for each given name and will reuse an executor for all subsequent calls.
+
+The annotation also allows to specify the executor pool size, or the execution timeout time.
 
 ## Licensing
 

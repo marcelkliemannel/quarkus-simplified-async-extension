@@ -13,6 +13,7 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import java.lang.reflect.Method;
+import java.util.concurrent.TimeUnit;
 
 /**
  * An interceptor which executes @{@link Async} methods asynchronously
@@ -48,20 +49,26 @@ import java.lang.reflect.Method;
  * }</pre>
  * It's also possible to have {@code Future<Void>} as a return type and return
  * null to use the callback functionalities.
+ *
+ * <p>By using {@link VertxAsync}, as an alternative to {@link Async}, it's
+ * possible to execute an asynchronous method on a custom shared worker
+ * executor.
  */
-@Async
 @Interceptor
-@Priority(Interceptor.Priority.APPLICATION)
-@SuppressWarnings("unused")
+@Async
+@Priority(VertxAsyncInterceptor.PRIORITY)
 public class VertxAsyncInterceptor {
   // -- Class Fields ------------------------------------------------------------------------------------------------ //
+
+  public static final int PRIORITY = Interceptor.Priority.LIBRARY_AFTER + 100;
+
   // -- Instance Fields --------------------------------------------------------------------------------------------- //
 
   @Inject
-  public Vertx vertx;
+  Vertx vertx;
 
   @Inject
-  public AsyncUncaughtExceptionHandler asyncUncaughtExceptionHandler;
+  AsyncUncaughtExceptionHandler asyncUncaughtExceptionHandler;
 
   // -- Initialization ---------------------------------------------------------------------------------------------- //
   // -- Exposed Methods --------------------------------------------------------------------------------------------- //
@@ -73,19 +80,43 @@ public class VertxAsyncInterceptor {
       return context.proceed();
     }
 
-    Future<?> future = vertx.executeBlocking(runAsyncTask(context), false);
+    Handler<Promise<Object>> taskHandler = createTaskHandler(context);
+    Future<?> future = executeTaskHandler(method, taskHandler);
     if (method.getReturnType().equals(Future.class)) {
       return future;
     }
     else {
-     future.onFailure(e -> asyncUncaughtExceptionHandler.handleUncaughtException(e, context.getMethod(), context.getParameters()));
-     return null;
+      future.onFailure(e -> asyncUncaughtExceptionHandler.handleUncaughtException(e, context.getMethod(), context.getParameters()));
+      return null;
     }
   }
 
   // -- Private Methods --------------------------------------------------------------------------------------------- //
 
-  private Handler<Promise<Object>> runAsyncTask(InvocationContext context) {
+  private Future<?> executeTaskHandler(Method method, Handler<Promise<Object>> taskHandler) {
+    VertxAsync vertxAsyncAnnotation = method.getAnnotation(VertxAsync.class);
+    if (vertxAsyncAnnotation != null) {
+      return executeOnCustomExecutor(vertxAsyncAnnotation, taskHandler);
+    }
+    else {
+      return executorOnDefaultExecutor(taskHandler);
+    }
+  }
+
+  private Future<?> executeOnCustomExecutor(VertxAsync vertxAsyncAnnotation, Handler<Promise<Object>> taskHandler) {
+    String executorName = vertxAsyncAnnotation.value();
+    int executorPoolSize = vertxAsyncAnnotation.executorPoolSize();
+    long maxExecutionTime = vertxAsyncAnnotation.maxExecutionTime();
+    TimeUnit maxExecutionTimeUnit = vertxAsyncAnnotation.maxExecutionTimeUnit();
+    return vertx.createSharedWorkerExecutor(executorName, executorPoolSize, maxExecutionTime, maxExecutionTimeUnit)
+                .executeBlocking(taskHandler, false);
+  }
+
+  private Future<?> executorOnDefaultExecutor(Handler<Promise<Object>> taskHandler) {
+    return vertx.executeBlocking(taskHandler, false);
+  }
+
+  private Handler<Promise<Object>> createTaskHandler(InvocationContext context) {
     return promise -> {
       try {
         Object result = context.proceed();

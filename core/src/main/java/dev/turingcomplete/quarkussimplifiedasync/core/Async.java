@@ -2,6 +2,7 @@ package dev.turingcomplete.quarkussimplifiedasync.core;
 
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -12,8 +13,9 @@ import java.lang.annotation.Target;
  * them asynchronously.
  *
  * <p>The supported return types are dependent on the used extension. See their
- * documentation for a more detailed description
+ * documentation for a more detailed description.
  */
+@Inherited
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
