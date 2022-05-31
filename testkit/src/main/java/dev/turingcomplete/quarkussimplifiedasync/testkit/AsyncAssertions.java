@@ -13,7 +13,7 @@ public final class AsyncAssertions {
   public static final int TOTAL_ASYNC_PARALLEL_OVERHEAD_MILLIS = 250;
   /**
    * Milliseconds a test case should use as a timeout if its executes
-   * {@link AsyncAssertions#assertMethodExecutedInParallel(Consumer)}
+   * {@link AsyncAssertions#assertAsyncMethodExecutedInParallel(Consumer)}
    */
   public static final int ASYNC_EXECUTION_TEST_TIMEOUT_MILLIS  = SINGLE_ASYNC_EXECUTION_MILLIS + TOTAL_ASYNC_PARALLEL_OVERHEAD_MILLIS + 200;
   public static final int ASYNC_PARALLEL_TESTS                 = 6;
@@ -48,7 +48,7 @@ public final class AsyncAssertions {
    * <p>The execution of the {@link Runnable} will take
    * {@link #SINGLE_ASYNC_EXECUTION_MILLIS}.
    */
-  public static void assertMethodExecutedInParallel(Consumer<Runnable> asyncMethod) throws InterruptedException {
+  public static void assertAsyncMethodExecutedInParallel(Consumer<Runnable> asyncMethod) throws InterruptedException {
     long[] asyncMethodExecutionStartTimes = new long[ASYNC_PARALLEL_TESTS];
     var parallelTestsCountDownLatch = new CountDownLatch(ASYNC_PARALLEL_TESTS);
 

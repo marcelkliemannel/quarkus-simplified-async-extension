@@ -1,6 +1,7 @@
 package dev.turingcomplete.quarkussimplifiedasync.testkit;
 
 import dev.turingcomplete.quarkussimplifiedasync.core.AsyncUncaughtExceptionHandler;
+import io.quarkus.arc.Unremovable;
 
 import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
@@ -14,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @Alternative
 @Singleton
+@Unremovable
 public class CapturingAsyncUncaughtExceptionHandler implements AsyncUncaughtExceptionHandler {
   // -- Class Fields ------------------------------------------------------------------------------------------------ //
   // -- Instance Fields --------------------------------------------------------------------------------------------- //

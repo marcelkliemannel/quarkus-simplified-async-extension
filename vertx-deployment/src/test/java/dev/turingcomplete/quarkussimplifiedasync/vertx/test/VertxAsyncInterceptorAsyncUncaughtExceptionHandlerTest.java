@@ -5,21 +5,19 @@ import dev.turingcomplete.quarkussimplifiedasync.core.AsyncUncaughtExceptionHand
 import dev.turingcomplete.quarkussimplifiedasync.testkit.CapturedThrowable;
 import dev.turingcomplete.quarkussimplifiedasync.testkit.CapturingAsyncUncaughtExceptionHandler;
 import dev.turingcomplete.quarkussimplifiedasync.vertx.VertxAsyncInterceptor;
-import io.quarkus.test.QuarkusUnitTest;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.QuarkusTestProfile;
 import io.quarkus.test.junit.TestProfile;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-import org.junit.jupiter.api.extension.RegisterExtension;
 
 import javax.enterprise.inject.spi.CDI;
 import java.util.Set;
 
 /**
- * Tests that {@link VertxAsyncInterceptor} handles all throws exception via
- * the {@link AsyncUncaughtExceptionHandler}.
+ * Tests whether {@link VertxAsyncInterceptor} handles all throws exception
+ * via the {@link AsyncUncaughtExceptionHandler}.
  */
 @QuarkusTest
 @TestProfile(VertxAsyncInterceptorAsyncUncaughtExceptionHandlerTest.MyTestProfile.class)

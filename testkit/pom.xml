@@ -4,7 +4,7 @@
   <parent>
     <groupId>dev.turingcomplete</groupId>
     <artifactId>quarkus-simplified-async-extension-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
   </parent>
   <artifactId>quarkus-simplified-async-extension-testkit</artifactId>
   <name>Quarkus Simplified Async Extension - Test Kit</name>
