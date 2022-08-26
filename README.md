@@ -51,7 +51,7 @@ This extension, which uses Vert.x for the asynchronous execution, is available a
 
 ```kotlin
 dependencies {
-  implementation("dev.turingcomplete:quarkus-simplified-async-extension-vertx:1.1.0")
+  implementation("dev.turingcomplete:quarkus-simplified-async-extension-vertx:1.1.1")
 }
 ```
 
@@ -61,7 +61,7 @@ dependencies {
 <dependency>
   <groupId>dev.turingcomplete</groupId>
   <artifactId>quarkus-simplified-async-extension-vertx</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
 </dependency>
 ```
 
